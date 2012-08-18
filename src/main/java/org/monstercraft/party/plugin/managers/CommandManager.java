@@ -73,7 +73,7 @@ public class CommandManager {
 	private boolean hasPerms(CommandSender sender, GameCommand command) {
 		if (sender instanceof Player) {
 			for (String permission : command.getPermission()) {
-				if (sender.hasPermission(permission)) {
+				if (!sender.hasPermission(permission)) {
 					sender.sendMessage(ChatColor.RED
 							+ "You don't have permission to perform this command.");
 					return false;
