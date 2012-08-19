@@ -45,7 +45,7 @@ public class Create extends GameCommand {
 							+ "Party sucessfully created!");
 					return true;
 				}
-			} else if (split[3].equalsIgnoreCase("-locked")) {
+			} else if (split[3].equalsIgnoreCase("-lock")) {
 				PartyAPI.addParty(new Party(player, split[2], "", true));
 				player.sendMessage(ChatColor.GREEN
 						+ "Party sucessfully created!");
