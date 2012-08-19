@@ -35,6 +35,11 @@ public class Join extends GameCommand {
 							+ "Your were not invited to that party! It is invite only!");
 					return true;
 				}
+				if (!p.getPassword().equalsIgnoreCase("")) {
+					player.sendMessage(ChatColor.RED
+							+ "The party you tried to join is password protected!");
+					return true;
+				}
 				p.addMember(player);
 				p.sendPartyMessage(ChatColor.GREEN + player.getDisplayName()
 						+ " has joined the party!");

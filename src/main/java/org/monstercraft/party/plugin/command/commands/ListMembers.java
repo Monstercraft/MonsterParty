@@ -11,7 +11,7 @@ public class ListMembers extends GameCommand {
 
 	@Override
 	public boolean canExecute(CommandSender sender, String[] split) {
-		return split.length > 2 && split[0].equalsIgnoreCase("party")
+		return split.length > 1 && split[0].equalsIgnoreCase("party")
 				&& split[1].equalsIgnoreCase("list");
 	}
 

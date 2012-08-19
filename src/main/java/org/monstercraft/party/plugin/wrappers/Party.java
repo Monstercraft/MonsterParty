@@ -72,16 +72,20 @@ public class Party {
 	}
 
 	public void sendPartyChat(final Player player, final String message) {
-		for (Player p : members) {
-			p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
-					+ player.getDisplayName() + ChatColor.GREEN + ") "
-					+ message);
+		if (!isEmpty()) {
+			for (Player p : members) {
+				p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
+						+ player.getDisplayName() + ChatColor.GREEN + ") "
+						+ message);
+			}
 		}
 	}
 
 	public void sendPartyMessage(final String message) {
-		for (Player p : members) {
-			p.sendMessage(message);
+		if (!isEmpty()) {
+			for (Player p : members) {
+				p.sendMessage(message);
+			}
 		}
 	}
 
@@ -97,14 +101,26 @@ public class Party {
 	}
 
 	public String listMembers() {
-		String s = "";
-		for (Player p : members) {
-			s += p.getDisplayName() + ", ";
+		if (!isEmpty()) {
+			String s = ChatColor.GREEN + "";
+			for (Player p : members) {
+				s += p.getDisplayName() + ", ";
+			}
+			return s.substring(0, s.length() - 2);
 		}
-		return s.substring(0, s.length() - 2);
+		return ChatColor.GREEN + "Empty party. How did this happen?";
 	}
 
 	public boolean isEmpty() {
 		return members.isEmpty();
+	}
+
+	public void setNewOwner() {
+		if (!isEmpty()) {
+			for (Player p : members) {
+				this.setOwner(p);
+				return;
+			}
+		}
 	}
 }

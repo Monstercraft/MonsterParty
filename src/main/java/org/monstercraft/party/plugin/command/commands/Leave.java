@@ -29,8 +29,17 @@ public class Leave extends GameCommand {
 		}
 		if ((p = PartyAPI.getParty(player)) != null) {
 			p.removeMember(player);
+			p.sendPartyMessage(ChatColor.GREEN + player.getDisplayName()
+					+ " has left the party!");
 			if (p.isEmpty()) {
 				PartyAPI.removeParty(p);
+			} else {
+				if (p.getOwner().equals(player)) {
+					p.setNewOwner();
+					p.sendPartyMessage(ChatColor.GREEN
+							+ p.getOwner().getDisplayName()
+							+ " is the new party owner!");
+				}
 			}
 			player.sendMessage(ChatColor.GREEN + "You have left the party!");
 			return true;
