@@ -74,11 +74,9 @@ public class Party {
 	public void sendPartyChat(final Player player, final String message) {
 		if (!isEmpty()) {
 			for (Player p : members) {
-				if (p.hasPermission("monsterparty.chat")) {
-					p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
-							+ player.getDisplayName() + ChatColor.GREEN + ") "
-							+ message);
-				}
+				p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
+						+ player.getDisplayName() + ChatColor.GREEN + ") "
+						+ message);
 			}
 		}
 	}
@@ -101,9 +99,8 @@ public class Party {
 
 	public String listMembers() {
 		if (!isEmpty()) {
-			String s = ChatColor.GREEN + "Party Members (" + members.size()
-					+ "): " + ChatColor.BLUE + owner.getDisplayName() + ", "
-					+ ChatColor.GREEN;
+			int total = 0;
+			String list = "";
 			for (Player p : members) {
 				if (p.equals(owner)) {
 					continue;
@@ -111,8 +108,12 @@ public class Party {
 				if (p.hasPermission("monsterparty.admin")) {
 					continue;
 				}
-				s += p.getDisplayName() + ", ";
+				total++;
+				list += p.getDisplayName() + ", ";
 			}
+			String s = ChatColor.GREEN + "Party Members (" + total + "): "
+					+ ChatColor.BLUE + owner.getDisplayName() + ", "
+					+ ChatColor.GREEN + list;
 			return s.substring(0, s.length() - 2);
 		}
 		return ChatColor.GREEN + "Empty party. How did this happen?";
