@@ -11,6 +11,9 @@ commands:
   p:
     description: View party information on out dbo page.
     usage: /p (command)
+  pc:
+    description: Talk in party chat
+    usage: /pc to toggle or /pc (message) to send a quick message
   ptp:
     description: Teleport to another party member.
     usage: /ptp (player)

@@ -114,9 +114,11 @@ public class Party {
 			String s = ChatColor.GREEN + "Party Members (" + total + "): "
 					+ ChatColor.BLUE + owner.getDisplayName() + ", "
 					+ ChatColor.GREEN + list;
-			return s.substring(0, s.length() - 2);
+			if (total > 0) {
+				return s.substring(0, s.length() - 2);
+			}
 		}
-		return ChatColor.GREEN + "Empty party. How did this happen?";
+		return ChatColor.GREEN + "Nobody found here... Heh a party of admins.";
 	}
 
 	public boolean isEmpty() {

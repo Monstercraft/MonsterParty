@@ -11,7 +11,7 @@ public class Message extends GameCommand {
 
 	@Override
 	public boolean canExecute(CommandSender sender, String[] split) {
-		return split.length > 0 && split[0].equalsIgnoreCase("party");
+		return split.length > 0 && split[0].equalsIgnoreCase("pc");
 	}
 
 	@Override
