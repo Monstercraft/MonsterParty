@@ -9,7 +9,12 @@ import org.bukkit.entity.Player;
 import org.monstercraft.party.MonsterParty;
 import org.monstercraft.party.plugin.command.GameCommand;
 import org.monstercraft.party.plugin.command.commands.Create;
+import org.monstercraft.party.plugin.command.commands.Invite;
 import org.monstercraft.party.plugin.command.commands.Join;
+import org.monstercraft.party.plugin.command.commands.Kick;
+import org.monstercraft.party.plugin.command.commands.Leave;
+import org.monstercraft.party.plugin.command.commands.ListMembers;
+import org.monstercraft.party.plugin.command.commands.Message;
 import org.monstercraft.party.plugin.command.commands.Teleport;
 
 /**
@@ -32,6 +37,11 @@ public class CommandManager {
 		gameCommands.add(new Create());
 		gameCommands.add(new Join());
 		gameCommands.add(new Teleport());
+		gameCommands.add(new ListMembers());
+		gameCommands.add(new Kick());
+		gameCommands.add(new Invite());
+		gameCommands.add(new Leave());
+		gameCommands.add(new Message());
 	}
 
 	/**

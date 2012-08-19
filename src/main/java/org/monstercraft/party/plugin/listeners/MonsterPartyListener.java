@@ -85,11 +85,13 @@ public class MonsterPartyListener implements Listener {
 		}
 	}
 
-	@EventHandler
-	public void onComman(PlayerCommandPreprocessEvent event) {
-		if (event.getMessage().toLowerCase().startsWith("/ptp")) {
-			String message = event.getMessage().substring(4);
-			event.setMessage("/party teleport " + message);
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	public void onCommand(PlayerCommandPreprocessEvent event) {
+		String msg = event.getMessage().toLowerCase();
+		if (msg.startsWith("/ptp")) {
+			event.setMessage(event.getMessage().replace("/ptp", "/party teleport"));
+		} else if (msg.startsWith("/p ")) {
+			event.setMessage(event.getMessage().replace("/p ", "/party "));
 		}
 	}
 }

@@ -7,8 +7,10 @@ loadbefore: [Herochat]
 commands:
   party:
     description: View party information on out dbo page.
-    usage: /party
-    aliases: p
+    usage: /party (command)
+  p:
+    description: View party information on out dbo page.
+    usage: /p (command)
   ptp:
     description: Teleport to another party member.
     usage: /ptp (player)

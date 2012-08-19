@@ -86,18 +86,25 @@ public class Party {
 	}
 
 	public boolean isInvited(final Player player) {
+		if (invites.contains(player)) {
+			invites.remove(player);
+		}
 		return invites.contains(player);
 	}
 
 	public void invite(final Player player) {
 		invites.add(player);
 	}
-	
+
 	public String listMembers() {
 		String s = "";
 		for (Player p : members) {
 			s += p.getDisplayName() + ", ";
 		}
-		return s.substring(0, s.length()- 2);
+		return s.substring(0, s.length() - 2);
+	}
+
+	public boolean isEmpty() {
+		return members.isEmpty();
 	}
 }
