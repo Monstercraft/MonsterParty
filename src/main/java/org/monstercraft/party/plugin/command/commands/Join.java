@@ -32,7 +32,7 @@ public class Join extends GameCommand {
 			if ((p = PartyAPI.getParty(split[2])) != null) {
 				if (p.isInviteOnly() && !p.isInvited(player)) {
 					player.sendMessage(ChatColor.RED
-							+ "Your were not invited to that party! It is invite only!");
+							+ "You were not invited to that party! It is invite only!");
 					return true;
 				}
 				if (!p.getPassword().equalsIgnoreCase("")) {
@@ -52,7 +52,7 @@ public class Join extends GameCommand {
 			if ((p = PartyAPI.getParty(split[2])) != null) {
 				if (p.isInviteOnly() && !p.isInvited(player)) {
 					player.sendMessage(ChatColor.RED
-							+ "Your were not invited to that party! It is invite only!");
+							+ "You were not invited to that party! It is invite only!");
 					return true;
 				}
 				if (p.getPassword().equalsIgnoreCase("")) {

@@ -32,7 +32,7 @@ public class Invite extends GameCommand {
 			if ((p = PartyAPI.getParty(player)) != null) {
 				if (!p.getOwner().equals(player)) {
 					player.sendMessage(ChatColor.RED
-							+ "You are not the party owner!");
+							+ "You're not the party owner!");
 					return true;
 				}
 				Player invite;
@@ -41,6 +41,9 @@ public class Invite extends GameCommand {
 					p.sendPartyMessage(ChatColor.GREEN
 							+ invite.getDisplayName()
 							+ " has been invited to the party!");
+					invite.sendMessage(ChatColor.GREEN
+							+ "You have been invited to the party: "
+							+ p.getName());
 					return true;
 				}
 				player.sendMessage(ChatColor.RED + "Player not found!");

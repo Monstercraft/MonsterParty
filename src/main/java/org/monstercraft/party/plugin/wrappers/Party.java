@@ -90,9 +90,6 @@ public class Party {
 	}
 
 	public boolean isInvited(final Player player) {
-		if (invites.contains(player)) {
-			invites.remove(player);
-		}
 		return invites.contains(player);
 	}
 
