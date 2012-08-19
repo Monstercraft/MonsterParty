@@ -30,9 +30,10 @@ public class ListMembers extends GameCommand {
 			}
 		} else {
 			player.sendMessage(ChatColor.GREEN + "Green " + ChatColor.WHITE
-					+ "  are open parties" + ChatColor.RED + " Red"
+					+ " are open parties" + ChatColor.RED + " Red"
 					+ ChatColor.WHITE + " are password protected parties and "
-					+ ChatColor.BLUE + "Blue" + " are invite only parties!");
+					+ ChatColor.BLUE + "Blue" + ChatColor.WHITE
+					+ " are invite only parties!");
 			player.sendMessage(PartyAPI.listParties());
 			return true;
 		}

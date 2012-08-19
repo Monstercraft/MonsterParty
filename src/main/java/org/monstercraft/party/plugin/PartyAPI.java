@@ -92,6 +92,6 @@ public class PartyAPI {
 				s += ChatColor.GREEN + party.getName() + ", ";
 			}
 		}
-		return s;
+		return s.substring(0, s.length() - 1);
 	}
 }
