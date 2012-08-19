@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.monstercraft.party.MonsterParty;
 import org.monstercraft.party.plugin.PartyAPI;
 import org.monstercraft.party.plugin.wrappers.Party;
@@ -34,7 +35,34 @@ public class MonsterPartyListener implements Listener {
 				if (PartyAPI.getPartyChatMode(player)) {
 					if ((p = PartyAPI.getParty(player)) != null) {
 						p.sendPartyChat(player, event.getMessage());
+						event.setCancelled(true);
+						event.setMessage("");
 					}
+				}
+			}
+		}
+	}
+
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+		Party p;
+		if (!PartyAPI.inParty(player)) {
+			return;
+		}
+		if ((p = PartyAPI.getParty(player)) != null) {
+			p.removeMember(player);
+			if (!player.hasPermission("monsterparty.admin")) {
+				p.sendPartyMessage(ChatColor.GREEN + player.getDisplayName()
+						+ " has left the party!");
+			}
+			if (p.isEmpty()) {
+				PartyAPI.removeParty(p);
+			} else {
+				if (p.getOwner().equals(player)) {
+					p.setNewOwner();
+					p.sendPartyMessage(ChatColor.GREEN
+							+ p.getOwner().getDisplayName()
+							+ " is the new party owner!");
 				}
 			}
 		}
@@ -52,6 +80,8 @@ public class MonsterPartyListener implements Listener {
 			if (pet.getOwner() instanceof Player) {
 				hurt = (Player) pet.getOwner();
 			}
+		} else if (hurtEntity instanceof Player) {
+			hurt = (Player) hurtEntity;
 		}
 		if (cause == DamageCause.ENTITY_ATTACK) {
 			EntityDamageByEntityEvent damager = (EntityDamageByEntityEvent) event;
@@ -71,7 +101,7 @@ public class MonsterPartyListener implements Listener {
 				attacker = (Player) arrow.getShooter();
 			}
 		}
-		if (hurt != null) {
+		if (hurt != null && attacker != null) {
 			if (PartyAPI.inParty(hurt)) {
 				if ((p = PartyAPI.getParty(hurt)) != null) {
 					if (p.containsMember(attacker)) {
@@ -89,7 +119,8 @@ public class MonsterPartyListener implements Listener {
 	public void onCommand(PlayerCommandPreprocessEvent event) {
 		String msg = event.getMessage().toLowerCase();
 		if (msg.startsWith("/ptp")) {
-			event.setMessage(event.getMessage().replace("/ptp", "/party teleport"));
+			event.setMessage(event.getMessage().replace("/ptp",
+					"/party teleport"));
 		} else if (msg.startsWith("/p ")) {
 			event.setMessage(event.getMessage().replace("/p ", "/party "));
 		}

@@ -74,9 +74,11 @@ public class Party {
 	public void sendPartyChat(final Player player, final String message) {
 		if (!isEmpty()) {
 			for (Player p : members) {
-				p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
-						+ player.getDisplayName() + ChatColor.GREEN + ") "
-						+ message);
+				if (p.hasPermission("monsterparty.chat")) {
+					p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
+							+ player.getDisplayName() + ChatColor.GREEN + ") "
+							+ message);
+				}
 			}
 		}
 	}
@@ -100,10 +102,13 @@ public class Party {
 	public String listMembers() {
 		if (!isEmpty()) {
 			String s = ChatColor.GREEN + "Party Members (" + members.size()
-					+ "): " + ChatColor.BLUE + owner.getDisplayName() +", "
+					+ "): " + ChatColor.BLUE + owner.getDisplayName() + ", "
 					+ ChatColor.GREEN;
 			for (Player p : members) {
 				if (p.equals(owner)) {
+					continue;
+				}
+				if (p.hasPermission("monsterparty.admin")) {
 					continue;
 				}
 				s += p.getDisplayName() + ", ";

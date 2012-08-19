@@ -36,9 +36,11 @@ public class Teleport extends GameCommand {
 			if (to != null) {
 				if (p.containsMember(to)) {
 					player.teleport(to);
-					p.sendPartyMessage(ChatColor.GREEN
-							+ player.getDisplayName() + " has teleported to "
-							+ to.getDisplayName());
+					if (!player.hasPermission("monsterparty.admin")) {
+						p.sendPartyMessage(ChatColor.GREEN
+								+ player.getDisplayName()
+								+ " has teleported to " + to.getDisplayName());
+					}
 					return true;
 				}
 			}

@@ -39,3 +39,6 @@ permissions:
   monsterparty.teleport:
     description: Teleport to a party member.
     default: op
+  monsterparty.admin:
+    description: Teleport to a party member.
+    default: op

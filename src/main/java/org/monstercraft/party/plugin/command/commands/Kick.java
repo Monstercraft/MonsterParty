@@ -30,14 +30,17 @@ public class Kick extends GameCommand {
 		}
 		if (split.length == 3) {
 			if ((p = PartyAPI.getParty(player)) != null) {
-				if (!p.getOwner().equals(player)) {
-					player.sendMessage(ChatColor.RED
-							+ "You are not the party owner!");
-					return true;
+				if (!player.hasPermission("monsterparty.admin")) {
+					if (!p.getOwner().equals(player)) {
+						player.sendMessage(ChatColor.RED
+								+ "You are not the party owner!");
+						return true;
+					}
 				}
 				Player kick;
 				if ((kick = Bukkit.getPlayer(split[2])) != null) {
 					p.removeMember(kick);
+					PartyAPI.setPartyChatMode(player, false);
 					p.sendPartyMessage(ChatColor.GREEN + kick.getDisplayName()
 							+ " has been kicked from the party!");
 					kick.sendMessage(ChatColor.RED

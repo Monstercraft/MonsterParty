@@ -30,10 +30,12 @@ public class Invite extends GameCommand {
 		}
 		if (split.length == 3) {
 			if ((p = PartyAPI.getParty(player)) != null) {
-				if (!p.getOwner().equals(player)) {
-					player.sendMessage(ChatColor.RED
-							+ "You're not the party owner!");
-					return true;
+				if (!player.hasPermission("monsterparty.admin")) {
+					if (!p.getOwner().equals(player)) {
+						player.sendMessage(ChatColor.RED
+								+ "You're not the party owner!");
+						return true;
+					}
 				}
 				Player invite;
 				if ((invite = Bukkit.getPlayer(split[2])) != null) {

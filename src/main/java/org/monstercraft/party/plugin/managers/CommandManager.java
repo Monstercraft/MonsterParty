@@ -36,11 +36,11 @@ public class CommandManager {
 	public CommandManager() {
 		gameCommands.add(new Create());
 		gameCommands.add(new Join());
+		gameCommands.add(new Leave());
+		gameCommands.add(new Invite());
+		gameCommands.add(new Kick());
 		gameCommands.add(new Teleport());
 		gameCommands.add(new ListMembers());
-		gameCommands.add(new Kick());
-		gameCommands.add(new Invite());
-		gameCommands.add(new Leave());
 		gameCommands.add(new Message());
 	}
 
