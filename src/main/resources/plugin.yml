@@ -36,7 +36,7 @@ permissions:
   monsterparty.invite:
     description: leave a party.
     default: op
-  monsterparty.message:
+  monsterparty.chat:
     description: leave a party.
     default: op
   monsterparty.teleport:
@@ -44,4 +44,4 @@ permissions:
     default: op
   monsterparty.admin:
     description: Teleport to a party member.
-    default: op
+    default: false
