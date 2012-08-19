@@ -72,6 +72,9 @@ public class CommandManager {
 
 	private boolean hasPerms(CommandSender sender, GameCommand command) {
 		if (sender instanceof Player) {
+			if (sender.hasPermission("monsterparty.*")) {
+				return true;
+			}
 			for (String permission : command.getPermission()) {
 				if (!sender.hasPermission(permission)) {
 					sender.sendMessage(ChatColor.RED

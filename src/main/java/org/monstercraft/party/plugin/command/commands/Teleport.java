@@ -22,6 +22,7 @@ public class Teleport extends GameCommand {
 	public boolean execute(CommandSender sender, String[] split) {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage("You must be a player to teleport!");
+			return true;
 		}
 		Player player = (Player) sender;
 		Party p;
@@ -35,8 +36,9 @@ public class Teleport extends GameCommand {
 			if (to != null) {
 				if (p.containsMember(to)) {
 					player.teleport(to);
-					player.sendMessage(ChatColor.GREEN
-							+ "You have teleported to: " + to.getDisplayName());
+					p.sendPartyMessage(ChatColor.GREEN
+							+ player.getDisplayName() + " has teleported to "
+							+ to.getDisplayName());
 					return true;
 				}
 			}

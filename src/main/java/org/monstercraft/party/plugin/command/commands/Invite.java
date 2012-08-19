@@ -3,12 +3,12 @@ package org.monstercraft.party.plugin.command.commands;
 import org.bukkit.command.CommandSender;
 import org.monstercraft.party.plugin.command.GameCommand;
 
-public class Invite extends GameCommand{
+public class Invite extends GameCommand {
 
 	@Override
 	public boolean canExecute(CommandSender sender, String[] split) {
-		// TODO Auto-generated method stub
-		return false;
+		return split.length > 2 && split[0].equalsIgnoreCase("party")
+				&& split[1].equalsIgnoreCase("invite");
 	}
 
 	@Override

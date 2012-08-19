@@ -15,7 +15,9 @@ public class Party {
 
 	private final boolean inviteOnly;
 
-	private ArrayList<Player> members = new ArrayList<Player>();;
+	private ArrayList<Player> members = new ArrayList<Player>();
+
+	private ArrayList<Player> invites = new ArrayList<Player>();
 
 	public Party(final Player owner, final String name) {
 		this(owner, name, "");
@@ -50,8 +52,11 @@ public class Party {
 		return owner;
 	}
 
-	public void addMember(final Player p) {
-		members.add(p);
+	public void addMember(final Player player) {
+		if (invites.contains(player)) {
+			invites.remove(player);
+		}
+		members.add(player);
 	}
 
 	public void removeMember(final Player p) {
@@ -66,11 +71,33 @@ public class Party {
 		this.owner = owner;
 	}
 
-	public void sendPartyMessage(final Player player, final String message) {
+	public void sendPartyChat(final Player player, final String message) {
 		for (Player p : members) {
 			p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
 					+ player.getDisplayName() + ChatColor.GREEN + ") "
 					+ message);
 		}
+	}
+
+	public void sendPartyMessage(final String message) {
+		for (Player p : members) {
+			p.sendMessage(message);
+		}
+	}
+
+	public boolean isInvited(final Player player) {
+		return invites.contains(player);
+	}
+
+	public void invite(final Player player) {
+		invites.add(player);
+	}
+	
+	public String listMembers() {
+		String s = "";
+		for (Player p : members) {
+			s += p.getDisplayName() + ", ";
+		}
+		return s.substring(0, s.length()- 2);
 	}
 }

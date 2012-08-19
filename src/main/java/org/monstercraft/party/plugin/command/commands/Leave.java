@@ -3,7 +3,7 @@ package org.monstercraft.party.plugin.command.commands;
 import org.bukkit.command.CommandSender;
 import org.monstercraft.party.plugin.command.GameCommand;
 
-public class Leave extends GameCommand{
+public class Leave extends GameCommand {
 
 	@Override
 	public boolean canExecute(CommandSender sender, String[] split) {
@@ -19,8 +19,7 @@ public class Leave extends GameCommand{
 
 	@Override
 	public String[] getPermission() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[] { "monsterparty.leave" };
 	}
 
 }

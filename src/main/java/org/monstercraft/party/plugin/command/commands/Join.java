@@ -19,6 +19,7 @@ public class Join extends GameCommand {
 	public boolean execute(CommandSender sender, String[] split) {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage("You can't join parties!");
+			return true;
 		}
 		Player player = (Player) sender;
 		Party p;
@@ -29,10 +30,38 @@ public class Join extends GameCommand {
 		}
 		if (split.length == 3) {
 			if ((p = PartyAPI.getParty(split[2])) != null) {
+				if (p.isInviteOnly() && !p.isInvited(player)) {
+					player.sendMessage(ChatColor.RED
+							+ "Your were not invited to that party! It is invite only!");
+					return true;
+				}
 				p.addMember(player);
-				player.sendMessage(ChatColor.GREEN
-						+ "Successfully joined party!");
+				p.sendPartyMessage(ChatColor.GREEN + player.getDisplayName()
+						+ " has joined the party!");
 				return true;
+			}
+			player.sendMessage(ChatColor.RED
+					+ "No party with that name exists!");
+			return true;
+		} else if (split.length == 4) {
+			if ((p = PartyAPI.getParty(split[2])) != null) {
+				if (p.isInviteOnly() && !p.isInvited(player)) {
+					player.sendMessage(ChatColor.RED
+							+ "Your were not invited to that party! It is invite only!");
+					return true;
+				}
+				if (p.getPassword().equalsIgnoreCase("")) {
+					player.sendMessage(ChatColor.RED
+							+ "There is no password on the party you attempted to join!");
+					return true;
+				}
+				if (p.getPassword().equalsIgnoreCase(split[3])) {
+					p.addMember(player);
+					p.sendPartyMessage(ChatColor.GREEN
+							+ player.getDisplayName()
+							+ " has joined the party!");
+					return true;
+				}
 			}
 			player.sendMessage(ChatColor.RED
 					+ "No party with that name exists!");

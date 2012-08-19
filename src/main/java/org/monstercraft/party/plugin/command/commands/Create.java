@@ -19,6 +19,7 @@ public class Create extends GameCommand {
 	public boolean execute(CommandSender sender, String[] split) {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage("You can't create parties!");
+			return true;
 		}
 		Player player = (Player) sender;
 		if (PartyAPI.inParty(player)) {

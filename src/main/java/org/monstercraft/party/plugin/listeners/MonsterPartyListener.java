@@ -1,5 +1,6 @@
 package org.monstercraft.party.plugin.listeners;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -32,7 +33,7 @@ public class MonsterPartyListener implements Listener {
 			if (PartyAPI.inParty(player)) {
 				if (PartyAPI.getPartyChatMode(player)) {
 					if ((p = PartyAPI.getParty(player)) != null) {
-						p.sendPartyMessage(player, event.getMessage());
+						p.sendPartyChat(player, event.getMessage());
 					}
 				}
 			}
@@ -76,6 +77,8 @@ public class MonsterPartyListener implements Listener {
 					if (p.containsMember(attacker)) {
 						event.setDamage(0);
 						event.setCancelled(true);
+						attacker.sendMessage(ChatColor.RED
+								+ "You can't hurt members of the same party!");
 					}
 				}
 			}

@@ -8,6 +8,10 @@ commands:
   party:
     description: View party information on out dbo page.
     usage: /party
+    aliases: p
+  ptp:
+    description: Teleport to another party member.
+    usage: /ptp (player)
 permissions:
   monsterparty.create:
     description: Create a party.
@@ -18,14 +22,18 @@ permissions:
   monsterparty.leave:
     description: leave a party.
     default: op
+  monsterparty.list:
+    description: leave a party.
+    default: op
+  monsterparty.kick:
+    description: leave a party.
+    default: op
+  monsterparty.invite:
+    description: leave a party.
+    default: op
+  monsterparty.message:
+    description: leave a party.
+    default: op
   monsterparty.teleport:
     description: Teleport to a party member.
     default: op
-  monsterparty.*:
-    description: All the nodes
-    default: op
-    children:
-      monsterparty.create
-      monsterparty.join
-      monsterparty.leave
-      monsterparty.teleport
