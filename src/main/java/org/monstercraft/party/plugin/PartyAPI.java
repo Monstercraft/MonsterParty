@@ -2,6 +2,7 @@ package org.monstercraft.party.plugin;
 
 import java.util.ArrayList;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.monstercraft.party.plugin.wrappers.Party;
 
@@ -78,5 +79,19 @@ public class PartyAPI {
 				directedChat.remove(player);
 			}
 		}
+	}
+
+	public static String listParties() {
+		String s = ChatColor.GREEN + "Parties (" + parties.size() + "): ";
+		for (Party party : parties) {
+			if (party.isInviteOnly()) {
+				s += ChatColor.BLUE + party.getName() + ", ";
+			} else if (!party.getPassword().equalsIgnoreCase("")) {
+				s += ChatColor.RED + party.getName() + ", ";
+			} else {
+				s += ChatColor.GREEN + party.getName() + ", ";
+			}
+		}
+		return s;
 	}
 }

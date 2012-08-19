@@ -109,10 +109,10 @@ public class Party {
 					continue;
 				}
 				total++;
-				list += p.getDisplayName() + ", ";
+				list += p.getName() + ", ";
 			}
 			String s = ChatColor.GREEN + "Party Members (" + total + "): "
-					+ ChatColor.BLUE + owner.getDisplayName() + ", "
+					+ ChatColor.BLUE + owner.getName() + ", "
 					+ ChatColor.GREEN + list;
 			if (total > 0) {
 				return s.substring(0, s.length() - 2);

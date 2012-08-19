@@ -1,5 +1,6 @@
 package org.monstercraft.party;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.monstercraft.party.plugin.listeners.MonsterPartyListener;
 import org.monstercraft.party.plugin.managers.CommandManager;
+import org.monstercraft.party.plugin.util.Metrics;
 
 /**
  * This class represents the main plugin. All actions related to the plugin are
@@ -29,6 +31,11 @@ public class MonsterParty extends JavaPlugin {
 		command = new CommandManager();
 		this.getServer().getPluginManager()
 				.registerEvents(new MonsterPartyListener(this), this);
+		try {
+			new Metrics(this).start();
+		} catch (final IOException e) {
+			debug(e);
+		}
 	}
 
 	/**
