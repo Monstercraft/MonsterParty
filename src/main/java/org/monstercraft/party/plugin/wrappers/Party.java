@@ -102,8 +102,13 @@ public class Party {
 
 	public String listMembers() {
 		if (!isEmpty()) {
-			String s = ChatColor.GREEN + "";
+			String s = ChatColor.GREEN + "Party Members (" + members.size()
+					+ "): " + ChatColor.BLUE + owner.getDisplayName() +", "
+					+ ChatColor.GREEN;
 			for (Player p : members) {
+				if (p.equals(owner)) {
+					continue;
+				}
 				s += p.getDisplayName() + ", ";
 			}
 			return s.substring(0, s.length() - 2);
