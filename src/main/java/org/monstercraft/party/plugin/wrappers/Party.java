@@ -103,6 +103,7 @@ public class Party {
 			String list = "";
 			for (Player p : members) {
 				if (p.equals(owner)) {
+					total++;
 					continue;
 				}
 				if (p.hasPermission("monsterparty.admin")) {
@@ -112,8 +113,8 @@ public class Party {
 				list += p.getName() + ", ";
 			}
 			String s = ChatColor.GREEN + "Party Members (" + total + "): "
-					+ ChatColor.BLUE + owner.getName() + ", "
-					+ ChatColor.GREEN + list;
+					+ ChatColor.BLUE + owner.getName() + ", " + ChatColor.GREEN
+					+ list;
 			if (total > 0) {
 				return s.substring(0, s.length() - 2);
 			}
