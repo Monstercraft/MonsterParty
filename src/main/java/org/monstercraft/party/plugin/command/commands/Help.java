@@ -23,7 +23,7 @@ public class Help extends GameCommand {
 	@Override
 	public boolean execute(CommandSender sender, String[] split) {
 		Player player = (Player) sender;
-		player.sendMessage(ChatColor.RED + "                       MonsterParty Help");
+		player.sendMessage(ChatColor.RED + "                          MonsterParty Help");
 		player.sendMessage(ChatColor.DARK_PURPLE + "-----------------------------------------------------");
 		player.sendMessage(ChatColor.YELLOW + "/party create [Name] " + ChatColor.AQUA + "- Create a party");
 		player.sendMessage(ChatColor.YELLOW + "/party create [Name] :p[Password] " + ChatColor.AQUA + "- Create Password Protected Party");
