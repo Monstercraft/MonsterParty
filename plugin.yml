@@ -1,0 +1,47 @@
+name: MonsterParty
+main: org.monstercraft.party.MonsterParty
+version: '1.1'
+author: Fletch_to_99, Jurre1996
+description: A party system.
+loadbefore: [Herochat]
+commands:
+  party:
+    description: View party information on out dbo page.
+    usage: /party (command)
+  p:
+    description: View party information on out dbo page.
+    usage: /p (command)
+  pc:
+    description: Talk in party chat
+    usage: /pc to toggle or /pc (message) to send a quick message
+  ptp:
+    description: Teleport to another party member.
+    usage: /ptp (player)
+permissions:
+  monsterparty.create:
+    description: Create a party.
+    default: op
+  monsterparty.join:
+    description: Join a party.
+    default: op
+  monsterparty.leave:
+    description: leave a party.
+    default: op
+  monsterparty.list:
+    description: leave a party.
+    default: op
+  monsterparty.kick:
+    description: leave a party.
+    default: op
+  monsterparty.invite:
+    description: leave a party.
+    default: op
+  monsterparty.chat:
+    description: leave a party.
+    default: op
+  monsterparty.teleport:
+    description: Teleport to a party member.
+    default: op
+  monsterparty.admin:
+    description: Teleport to a party member.
+    default: op
