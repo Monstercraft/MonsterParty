@@ -71,13 +71,17 @@ public class CommandManager {
 				if (hasPerms(sender, c)) {
 					try {
 						c.execute(sender, split);
+						return true;
 					} catch (Exception e) {
 						MonsterParty.debug(e);
 					}
 				} else {
-					break;
+					return true;
 				}
 			}
+			sender.sendMessage(ChatColor.RED
+					+ "Command not found here is a list of avaliable commands!");
+			Help.help(sender);
 		}
 		return true;
 	}

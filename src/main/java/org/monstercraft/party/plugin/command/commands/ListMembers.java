@@ -37,7 +37,7 @@ public class ListMembers extends GameCommand {
 			player.sendMessage(PartyAPI.listParties());
 			return true;
 		}
-		player.sendMessage(ChatColor.RED + "Your not in a party!");
+		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
 		return true;
 	}
 

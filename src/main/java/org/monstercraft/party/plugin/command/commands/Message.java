@@ -50,6 +50,7 @@ public class Message extends GameCommand {
 			player.sendMessage(ChatColor.RED
 					+ "Your party was not found... say what?!?!?");
 		}
+		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
 		return true;
 	}
 

@@ -55,7 +55,7 @@ public class Invite extends GameCommand {
 					+ "Your party was not found... Say what?!?!");
 			return true;
 		}
-		player.sendMessage(ChatColor.RED + "Invalid command usage!");
+		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
 		return true;
 	}
 

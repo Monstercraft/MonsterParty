@@ -2,7 +2,6 @@ package org.monstercraft.party.plugin.command.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.monstercraft.party.plugin.command.GameCommand;
 
 /**
@@ -22,7 +21,16 @@ public class Help extends GameCommand {
 
 	@Override
 	public boolean execute(CommandSender sender, String[] split) {
-		Player player = (Player) sender;
+		help(sender);
+		return true;
+	}
+
+	@Override
+	public String[] getPermission() {
+		return new String[] { "monsterparty.help" };
+	}
+
+	public static void help(CommandSender player) {
 		player.sendMessage(ChatColor.DARK_PURPLE
 				+ "-----------------------------------------------------");
 		player.sendMessage(ChatColor.RED
@@ -78,11 +86,5 @@ public class Help extends GameCommand {
 				+ ChatColor.RED + "Jurre1996");
 		player.sendMessage(ChatColor.DARK_PURPLE
 				+ "-----------------------------------------------------");
-		return true;
-	}
-
-	@Override
-	public String[] getPermission() {
-		return new String[] { "monsterparty.help" };
 	}
 }

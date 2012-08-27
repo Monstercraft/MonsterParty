@@ -47,7 +47,7 @@ public class Leave extends GameCommand {
 			player.sendMessage(ChatColor.GREEN + "You have left the party!");
 			return true;
 		}
-		player.sendMessage(ChatColor.RED + "Invalid command usage!");
+		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
 		return true;
 	}
 

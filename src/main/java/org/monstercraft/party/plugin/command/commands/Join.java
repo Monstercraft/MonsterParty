@@ -77,7 +77,7 @@ public class Join extends GameCommand {
 					+ "No party with that name exists!");
 			return true;
 		}
-		player.sendMessage(ChatColor.RED + "Invalid command usage!");
+		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
 		return true;
 	}
 

@@ -52,7 +52,7 @@ public class Create extends GameCommand {
 				return true;
 			}
 		}
-		player.sendMessage(ChatColor.RED + "Invalid command usage!");
+		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
 		return true;
 	}
 
