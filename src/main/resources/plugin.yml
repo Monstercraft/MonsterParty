@@ -1,6 +1,6 @@
 name: MonsterParty
 main: org.monstercraft.party.MonsterParty
-version: '1.1'
+version: '${project.version}'
 author: Fletch_to_99, Jurre1996
 description: A party system.
 loadbefore: [Herochat]
@@ -44,7 +44,7 @@ permissions:
     default: op
   monsterparty.help:
     description: Check for help commands.
-    default: op
+    default: true
   monsterparty.admin:
     description: Teleport to a party member.
     default: op
