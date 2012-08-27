@@ -41,8 +41,8 @@ public class Help extends GameCommand {
 			player.sendMessage(ChatColor.YELLOW + "/party create [Name] "
 					+ ChatColor.AQUA + "- Create a party");
 			player.sendMessage(ChatColor.YELLOW
-					+ "/party create [Name] :p[Password] " + ChatColor.AQUA
-					+ "- Create Password Protected Party");
+					+ "/party create [Name] p:[Password] " + ChatColor.AQUA
+					+ "- Password a Party");
 			player.sendMessage(ChatColor.YELLOW + "/party create [name] -lock "
 					+ ChatColor.AQUA + "- Lock your party");
 		}
@@ -51,8 +51,8 @@ public class Help extends GameCommand {
 					+ ChatColor.AQUA + "- Join a party");
 		}
 		if (player.hasPermission("monsterparty.leave")) {
-			player.sendMessage(ChatColor.YELLOW + "/party join [Name] "
-					+ ChatColor.AQUA + "- Join a party");
+			player.sendMessage(ChatColor.YELLOW + "/party leave [Name] "
+					+ ChatColor.AQUA + "- Leave a party");
 		}
 		if (player.hasPermission("monsterparty.list")) {
 			player.sendMessage(ChatColor.YELLOW + "/party list "
