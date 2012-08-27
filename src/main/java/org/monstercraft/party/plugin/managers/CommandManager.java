@@ -79,10 +79,10 @@ public class CommandManager {
 					return true;
 				}
 			}
-			sender.sendMessage(ChatColor.RED
-					+ "Command not found here is a list of avaliable commands!");
-			Help.help(sender);
 		}
+		sender.sendMessage(ChatColor.RED
+				+ "Command not found here is a list of avaliable commands!");
+		Help.help(sender);
 		return true;
 	}
 
