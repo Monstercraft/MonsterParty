@@ -59,6 +59,10 @@ public class Help extends GameCommand {
                     + ChatColor.AQUA
                     + "- List available parties or members in your party");
         }
+        if (player.hasPermission("monsterparty.list")) {
+            player.sendMessage(ChatColor.YELLOW + "/party list [party] "
+                    + ChatColor.AQUA + "- List members of the specific party");
+        }
         if (player.hasPermission("monsterparty.invite")) {
             player.sendMessage(ChatColor.YELLOW + "/party invite [Player] "
                     + ChatColor.AQUA + "- Invite a player to the party [Owner]");

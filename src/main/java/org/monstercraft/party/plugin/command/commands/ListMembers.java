@@ -40,8 +40,8 @@ public class ListMembers extends GameCommand {
                 return true;
             }
         } else if (split.length == 2) {
-            if (PartyAPI.exists(split[2])) {
-                final Party par = PartyAPI.getParty(split[2]);
+            if (PartyAPI.exists(split[1])) {
+                final Party par = PartyAPI.getParty(split[1]);
                 player.sendMessage(par.listMembers());
                 return true;
             }
