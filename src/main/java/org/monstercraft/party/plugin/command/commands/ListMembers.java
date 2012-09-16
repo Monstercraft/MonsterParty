@@ -9,41 +9,53 @@ import org.monstercraft.party.plugin.wrappers.Party;
 
 public class ListMembers extends GameCommand {
 
-	@Override
-	public boolean canExecute(CommandSender sender, String[] split) {
-		return split.length > 1 && split[0].equalsIgnoreCase("party")
-				&& split[1].equalsIgnoreCase("list");
-	}
+    @Override
+    public boolean canExecute(final CommandSender sender, final String[] split) {
+        return split.length > 1 && split[0].equalsIgnoreCase("party")
+                && split[1].equalsIgnoreCase("list");
+    }
 
-	@Override
-	public boolean execute(CommandSender sender, String[] split) {
-		if (!(sender instanceof Player)) {
-			sender.sendMessage("You can't list the players of a party from the console!");
-			return true;
-		}
-		Player player = (Player) sender;
-		Party p;
-		if (PartyAPI.inParty(player)) {
-			if ((p = PartyAPI.getParty(player)) != null) {
-				player.sendMessage(p.listMembers());
-				return true;
-			}
-		} else {
-			player.sendMessage(ChatColor.GREEN + "Green " + ChatColor.WHITE
-					+ " are open parties" + ChatColor.RED + " Red"
-					+ ChatColor.WHITE + " are password protected parties and "
-					+ ChatColor.BLUE + "Blue" + ChatColor.WHITE
-					+ " are invite only parties!");
-			player.sendMessage(PartyAPI.listParties());
-			return true;
-		}
-		player.sendMessage(ChatColor.RED + "Invalid command usage! Type /p help for help!");
-		return true;
-	}
+    @Override
+    public boolean execute(final CommandSender sender, final String[] split) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("You can't list the players of a party from the console!");
+            return true;
+        }
+        final Player player = (Player) sender;
+        Party p;
+        if (split.length == 1) {
+            if (PartyAPI.inParty(player)) {
+                if ((p = PartyAPI.getParty(player)) != null) {
+                    player.sendMessage(p.listMembers());
+                    return true;
+                }
+            } else {
+                player.sendMessage(ChatColor.GREEN + "Green " + ChatColor.WHITE
+                        + " are open parties" + ChatColor.RED + " Red"
+                        + ChatColor.WHITE
+                        + " are password protected parties and "
+                        + ChatColor.BLUE + "Blue" + ChatColor.WHITE
+                        + " are invite only parties!");
+                player.sendMessage(PartyAPI.listParties());
+                return true;
+            }
+        } else if (split.length == 2) {
+            if (PartyAPI.exists(split[2])) {
+                final Party par = PartyAPI.getParty(split[2]);
+                player.sendMessage(par.listMembers());
+                return true;
+            }
+            sender.sendMessage(ChatColor.RED + "Party not found!");
+            return true;
+        }
+        player.sendMessage(ChatColor.RED
+                + "Invalid command usage! Type /p help for help!");
+        return true;
+    }
 
-	@Override
-	public String[] getPermission() {
-		return new String[] { "monsterparty.list" };
-	}
+    @Override
+    public String[] getPermission() {
+        return new String[] { "monsterparty.list" };
+    }
 
 }

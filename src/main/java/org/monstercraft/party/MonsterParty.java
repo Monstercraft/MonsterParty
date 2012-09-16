@@ -12,76 +12,78 @@ import org.monstercraft.party.plugin.managers.CommandManager;
 import org.monstercraft.party.plugin.util.Metrics;
 
 /**
- * This class represents the main plugin. All actions related to the plugin are
- * forwarded by this class
+ * This class represents the main plugin. All actions related to the plugin are forwarded by this class
  * 
  * @author Fletch_to_99 <fletchto99@hotmail.com>
  * 
  */
 public class MonsterParty extends JavaPlugin {
 
-	private CommandManager command = null;
+    private CommandManager command = null;
 
-	/**
-	 * Enables the plugin.
-	 */
+    /**
+     * Enables the plugin.
+     */
 
-	public void onEnable() {
-		log("Starting plugin.");
-		command = new CommandManager();
-		this.getServer().getPluginManager()
-				.registerEvents(new MonsterPartyListener(this), this);
-		try {
-			new Metrics(this).start();
-		} catch (final IOException e) {
-			debug(e);
-		}
-	}
+    @Override
+    public void onEnable() {
+        MonsterParty.log("Starting plugin.");
+        command = new CommandManager();
+        getServer().getPluginManager().registerEvents(
+                new MonsterPartyListener(this), this);
+        try {
+            new Metrics(this).start();
+        } catch (final IOException e) {
+            MonsterParty.debug(e);
+        }
+    }
 
-	/**
-	 * Disables the plugin.
-	 */
+    /**
+     * Disables the plugin.
+     */
 
-	public void onDisable() {
-		log("Successfully disabled plugin!");
-	}
+    @Override
+    public void onDisable() {
+        MonsterParty.log("Successfully disabled plugin!");
+    }
 
-	/**
-	 * Handles commands.
-	 */
+    /**
+     * Handles commands.
+     */
 
-	public boolean onCommand(CommandSender sender, Command command,
-			String label, String[] args) {
-		return getCommandManager().onGameCommand(sender, command, label, args);
-	}
+    @Override
+    public boolean onCommand(final CommandSender sender, final Command command,
+            final String label, final String[] args) {
+        return getCommandManager().onGameCommand(sender, command, label, args);
+    }
 
-	/**
-	 * The plugins settings.
-	 * 
-	 * @return The settings.
-	 */
-	protected CommandManager getCommandManager() {
-		return command;
-	}
+    /**
+     * The plugins settings.
+     * 
+     * @return The settings.
+     */
+    protected CommandManager getCommandManager() {
+        return command;
+    }
 
-	/**
-	 * Logs debugging messages to the console.
-	 * 
-	 * @param error
-	 *            The message to print.
-	 */
-	public static void debug(final Exception error) {
-		Bukkit.getLogger().log(Level.SEVERE, "Critical error detected!", error);
-	}
+    /**
+     * Logs debugging messages to the console.
+     * 
+     * @param error
+     *            The message to print.
+     */
+    public static void debug(final Exception error) {
+        Bukkit.getLogger().log(Level.SEVERE, "Critical error detected!", error);
+    }
 
-	/**
-	 * Logs a message to the console.
-	 * 
-	 * @param msg
-	 *            The message to print.
-	 */
-	public static void log(String msg) {
-		Bukkit.getLogger().info(msg);
-	}
+    /**
+     * Logs a message to the console.
+     * 
+     * @param msg
+     *            The message to print.
+     */
+    public static void log(final String msg) {
+        Bukkit.getLogger().info(msg);
+    }
 
 }
