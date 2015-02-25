@@ -36,22 +36,6 @@ public class Party {
         members.add(owner);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean isInviteOnly() {
-        return inviteOnly;
-    }
-
-    public Player getOwner() {
-        return owner;
-    }
-
     public void addMember(final Player player) {
         if (invites.contains(player)) {
             invites.remove(player);
@@ -59,46 +43,40 @@ public class Party {
         members.add(player);
     }
 
-    public void removeMember(final Player p) {
-        members.remove(p);
-    }
-
     public boolean containsMember(final Player p) {
         return members.contains(p);
     }
 
-    public void setOwner(final Player owner) {
-        this.owner = owner;
+    public String getName() {
+        return name;
     }
 
-    public void sendPartyChat(final Player player, final String message) {
-        if (!isEmpty()) {
-            for (final Player p : members) {
-                p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
-                        + player.getDisplayName() + ChatColor.GREEN + ") "
-                        + message);
-            }
-        }
+    public Player getOwner() {
+        return owner;
     }
 
-    public void sendPartyMessage(final String message) {
-        if (!isEmpty()) {
-            for (final Player p : members) {
-                p.sendMessage(message);
-            }
-        }
-    }
-
-    public boolean isInvited(final Player player) {
-        return invites.contains(player);
+    public String getPassword() {
+        return password;
     }
 
     public void invite(final Player player) {
         invites.add(player);
     }
 
+    public boolean isEmpty() {
+        return members.isEmpty();
+    }
+
+    public boolean isInvited(final Player player) {
+        return invites.contains(player);
+    }
+
+    public boolean isInviteOnly() {
+        return inviteOnly;
+    }
+
     public String listMembers() {
-        if (!isEmpty()) {
+        if (!this.isEmpty()) {
             int total = 0;
             String list = "";
             for (final Player p : members) {
@@ -121,16 +99,38 @@ public class Party {
         return "";
     }
 
-    public boolean isEmpty() {
-        return members.isEmpty();
+    public void removeMember(final Player p) {
+        members.remove(p);
+    }
+
+    public void sendPartyChat(final Player player, final String message) {
+        if (!this.isEmpty()) {
+            for (final Player p : members) {
+                p.sendMessage(ChatColor.GREEN + "(" + ChatColor.RESET
+                        + player.getDisplayName() + ChatColor.GREEN + ") "
+                        + message);
+            }
+        }
+    }
+
+    public void sendPartyMessage(final String message) {
+        if (!this.isEmpty()) {
+            for (final Player p : members) {
+                p.sendMessage(message);
+            }
+        }
     }
 
     public void setNewOwner() {
-        if (!isEmpty()) {
+        if (!this.isEmpty()) {
             for (final Player p : members) {
-                setOwner(p);
+                this.setOwner(p);
                 return;
             }
         }
+    }
+
+    public void setOwner(final Player owner) {
+        this.owner = owner;
     }
 }

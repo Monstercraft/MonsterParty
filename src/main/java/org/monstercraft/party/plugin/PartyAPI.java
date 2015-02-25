@@ -8,16 +8,8 @@ import org.monstercraft.party.plugin.wrappers.Party;
 
 public class PartyAPI {
 
-    private static ArrayList<Party> parties = new ArrayList<Party>();
-
-    private static ArrayList<Player> directedChat = new ArrayList<Player>();
-
     public static void addParty(final Party p) {
         PartyAPI.parties.add(p);
-    }
-
-    public static void removeParty(final Party p) {
-        PartyAPI.parties.remove(p);
     }
 
     public static boolean contains(final Party p) {
@@ -37,13 +29,8 @@ public class PartyAPI {
         return p.containsMember(member);
     }
 
-    public static boolean inParty(final Player player) {
-        for (final Party p : PartyAPI.parties) {
-            if (p.containsMember(player)) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean exists(final String party) {
+        return PartyAPI.getParty(party) != null;
     }
 
     public static Party getParty(final Player player) {
@@ -68,17 +55,13 @@ public class PartyAPI {
         return PartyAPI.directedChat.contains(player);
     }
 
-    public static void setPartyChatMode(final Player player,
-            final boolean partyChat) {
-        if (partyChat) {
-            if (!PartyAPI.directedChat.contains(player)) {
-                PartyAPI.directedChat.add(player);
-            }
-        } else {
-            if (PartyAPI.directedChat.contains(player)) {
-                PartyAPI.directedChat.remove(player);
+    public static boolean inParty(final Player player) {
+        for (final Party p : PartyAPI.parties) {
+            if (p.containsMember(player)) {
+                return true;
             }
         }
+        return false;
     }
 
     public static String listParties() {
@@ -96,7 +79,24 @@ public class PartyAPI {
         return s.substring(0, s.length() - 2);
     }
 
-    public static boolean exists(final String party) {
-        return PartyAPI.getParty(party) != null;
+    public static void removeParty(final Party p) {
+        PartyAPI.parties.remove(p);
     }
+
+    public static void setPartyChatMode(final Player player,
+            final boolean partyChat) {
+        if (partyChat) {
+            if (!PartyAPI.directedChat.contains(player)) {
+                PartyAPI.directedChat.add(player);
+            }
+        } else {
+            if (PartyAPI.directedChat.contains(player)) {
+                PartyAPI.directedChat.remove(player);
+            }
+        }
+    }
+
+    private static ArrayList<Party> parties = new ArrayList<Party>();
+
+    private static ArrayList<Player> directedChat = new ArrayList<Player>();
 }

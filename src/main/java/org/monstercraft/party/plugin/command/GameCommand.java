@@ -4,15 +4,15 @@ import org.bukkit.command.CommandSender;
 
 /**
  * This class is the Abstract Game command.
- * 
+ *
  * @author fletch_to_99 <fletchto99@hotmail.com>
- * 
+ *
  */
 public abstract class GameCommand {
 
     /**
      * Checks if the command can be executed by the certian user.
-     * 
+     *
      * @param sender
      *            The command sender.
      * @param split
@@ -24,7 +24,7 @@ public abstract class GameCommand {
 
     /**
      * The action to perfrom when executing the command.
-     * 
+     *
      * @param sender
      *            The command sender.
      * @param split
@@ -36,7 +36,7 @@ public abstract class GameCommand {
 
     /**
      * The permissions node.
-     * 
+     *
      * @return The permission node for the command.
      */
     public abstract String[] getPermission();

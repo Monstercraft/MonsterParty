@@ -27,6 +27,17 @@ public class MonsterPartyListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onCommand(final PlayerCommandPreprocessEvent event) {
+        final String msg = event.getMessage().toLowerCase();
+        if (msg.startsWith("/ptp")) {
+            event.setMessage(event.getMessage().replace("/ptp",
+                    "/party teleport"));
+        } else if (msg.startsWith("/p ")) {
+            event.setMessage(event.getMessage().replace("/p ", "/party "));
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerChat(final AsyncPlayerChatEvent event) {
         final Player player = event.getPlayer();
         Party p;
@@ -38,31 +49,6 @@ public class MonsterPartyListener implements Listener {
                         event.setCancelled(true);
                         event.setMessage("");
                     }
-                }
-            }
-        }
-    }
-
-    public void onPlayerQuit(final PlayerQuitEvent event) {
-        final Player player = event.getPlayer();
-        Party p;
-        if (!PartyAPI.inParty(player)) {
-            return;
-        }
-        if ((p = PartyAPI.getParty(player)) != null) {
-            p.removeMember(player);
-            if (!player.hasPermission("monsterparty.admin")) {
-                p.sendPartyMessage(ChatColor.GREEN + player.getDisplayName()
-                        + " has left the party!");
-            }
-            if (p.isEmpty()) {
-                PartyAPI.removeParty(p);
-            } else {
-                if (p.getOwner().equals(player)) {
-                    p.setNewOwner();
-                    p.sendPartyMessage(ChatColor.GREEN
-                            + p.getOwner().getDisplayName()
-                            + " is the new party owner!");
                 }
             }
         }
@@ -115,14 +101,28 @@ public class MonsterPartyListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onCommand(final PlayerCommandPreprocessEvent event) {
-        final String msg = event.getMessage().toLowerCase();
-        if (msg.startsWith("/ptp")) {
-            event.setMessage(event.getMessage().replace("/ptp",
-                    "/party teleport"));
-        } else if (msg.startsWith("/p ")) {
-            event.setMessage(event.getMessage().replace("/p ", "/party "));
+    public void onPlayerQuit(final PlayerQuitEvent event) {
+        final Player player = event.getPlayer();
+        Party p;
+        if (!PartyAPI.inParty(player)) {
+            return;
+        }
+        if ((p = PartyAPI.getParty(player)) != null) {
+            p.removeMember(player);
+            if (!player.hasPermission("monsterparty.admin")) {
+                p.sendPartyMessage(ChatColor.GREEN + player.getDisplayName()
+                        + " has left the party!");
+            }
+            if (p.isEmpty()) {
+                PartyAPI.removeParty(p);
+            } else {
+                if (p.getOwner().equals(player)) {
+                    p.setNewOwner();
+                    p.sendPartyMessage(ChatColor.GREEN
+                            + p.getOwner().getDisplayName()
+                            + " is the new party owner!");
+                }
+            }
         }
     }
 }

@@ -20,9 +20,9 @@ import org.monstercraft.party.plugin.command.commands.Teleport;
 
 /**
  * This class manages all of the plugins commands.
- * 
+ *
  * @author fletch_to_99 <fletchto99@hotmail.com>
- * 
+ *
  */
 public class CommandManager {
 
@@ -30,7 +30,7 @@ public class CommandManager {
 
     /**
      * Creates an instance
-     * 
+     *
      * @param plugin
      *            The parent plugin.
      */
@@ -46,9 +46,26 @@ public class CommandManager {
         gameCommands.add(new Help());
     }
 
+    private boolean hasPerms(final CommandSender sender,
+            final GameCommand command) {
+        if (sender instanceof Player) {
+            if (sender.hasPermission("monsterparty.*")) {
+                return true;
+            }
+            for (final String permission : command.getPermission()) {
+                if (!sender.hasPermission(permission)) {
+                    sender.sendMessage(ChatColor.RED
+                            + "You don't have permission to perform this command.");
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * Executes a command that was ran in game or through the console.
-     * 
+     *
      * @param sender
      *            The command sender.
      * @param command
@@ -68,7 +85,7 @@ public class CommandManager {
         }
         for (final GameCommand c : gameCommands) {
             if (c.canExecute(sender, split)) {
-                if (hasPerms(sender, c)) {
+                if (this.hasPerms(sender, c)) {
                     try {
                         c.execute(sender, split);
                         return true;
@@ -83,23 +100,6 @@ public class CommandManager {
         sender.sendMessage(ChatColor.RED
                 + "Command not found here is a list of avaliable commands!");
         Help.help(sender);
-        return true;
-    }
-
-    private boolean hasPerms(final CommandSender sender,
-            final GameCommand command) {
-        if (sender instanceof Player) {
-            if (sender.hasPermission("monsterparty.*")) {
-                return true;
-            }
-            for (final String permission : command.getPermission()) {
-                if (!sender.hasPermission(permission)) {
-                    sender.sendMessage(ChatColor.RED
-                            + "You don't have permission to perform this command.");
-                    return false;
-                }
-            }
-        }
         return true;
     }
 }

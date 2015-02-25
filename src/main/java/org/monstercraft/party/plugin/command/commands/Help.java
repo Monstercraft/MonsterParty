@@ -6,29 +6,12 @@ import org.monstercraft.party.plugin.command.GameCommand;
 
 /**
  * This class is used for the /party help
- * 
+ *
  * @author Jurre1996 <Jurre@koetse.eu>
- * 
+ *
  */
 
 public class Help extends GameCommand {
-
-    @Override
-    public boolean canExecute(final CommandSender sender, final String[] split) {
-        return split.length > 1 && split[0].equalsIgnoreCase("party")
-                && split[1].equalsIgnoreCase("help");
-    }
-
-    @Override
-    public boolean execute(final CommandSender sender, final String[] split) {
-        Help.help(sender);
-        return true;
-    }
-
-    @Override
-    public String[] getPermission() {
-        return new String[] { "monsterparty.help" };
-    }
 
     public static void help(final CommandSender player) {
         player.sendMessage(ChatColor.DARK_PURPLE
@@ -90,5 +73,22 @@ public class Help extends GameCommand {
                 + ChatColor.RED + "Jurre1996");
         player.sendMessage(ChatColor.DARK_PURPLE
                 + "-----------------------------------------------------");
+    }
+
+    @Override
+    public boolean canExecute(final CommandSender sender, final String[] split) {
+        return split.length > 1 && split[0].equalsIgnoreCase("party")
+                && split[1].equalsIgnoreCase("help");
+    }
+
+    @Override
+    public boolean execute(final CommandSender sender, final String[] split) {
+        Help.help(sender);
+        return true;
+    }
+
+    @Override
+    public String[] getPermission() {
+        return new String[] { "monsterparty.help" };
     }
 }
